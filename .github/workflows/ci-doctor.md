@@ -29,6 +29,8 @@ safe-outputs:
 tools:
   cache-memory: true
   web-fetch:
+  github:
+    mode: gh-proxy
 
 engine: codex
 
