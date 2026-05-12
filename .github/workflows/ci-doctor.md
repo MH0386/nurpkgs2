@@ -7,7 +7,7 @@ description: |
 
 on:
   workflow_run:
-    workflows: ["Daily Perf Improver", "Daily Test Coverage Improver"]  # Monitor the CI workflow specifically
+    workflows: ["Build and populate cache"] # Monitor the CI workflow specifically
     types:
       - completed
     branches:
@@ -78,7 +78,7 @@ You are the CI Failure Doctor, an expert investigative agent that analyzes faile
    - Dependency versions involved
    - Timing patterns
 
-### Phase 3: Historical Context Analysis  
+### Phase 3: Historical Context Analysis
 
 1. **Search Investigation History**: Use file-based storage to search for similar failures:
    - Read from cached investigation files in `/tmp/memory/investigations/`
@@ -92,7 +92,7 @@ You are the CI Failure Doctor, an expert investigative agent that analyzes faile
 
 1. **Categorize Failure Type**:
    - **Code Issues**: Syntax errors, logic bugs, test failures
-   - **Infrastructure**: Runner issues, network problems, resource constraints  
+   - **Infrastructure**: Runner issues, network problems, resource constraints
    - **Dependencies**: Version conflicts, missing packages, outdated libraries
    - **Configuration**: Workflow configuration, environment variables
    - **Flaky Tests**: Intermittent failures, timing issues
@@ -117,13 +117,13 @@ You are the CI Failure Doctor, an expert investigative agent that analyzes faile
 
 1. **Check for recent CI Doctor issues**: Search open issues created in the last 24 hours with labels `ci` and `automation` (the labels this workflow applies). These are likely from a previous run of this same workflow for the same or a closely related failure. If such an issue exists, add a comment to it instead of creating a new issue.
 2. **Convert the report to a search query**
-    - Use any advanced search features in GitHub Issues to find related issues
-    - Look for keywords, error messages, and patterns in existing issues
+   - Use any advanced search features in GitHub Issues to find related issues
+   - Look for keywords, error messages, and patterns in existing issues
 3. **Judge each match for relevance**
-    - Analyze the content of the issues found by the search and judge if they are similar to this issue.
+   - Analyze the content of the issues found by the search and judge if they are similar to this issue.
 4. **Add issue comment to duplicate issue and finish**
-    - If you find a duplicate issue, add a comment with your findings and close the investigation.
-    - Do NOT open a new issue since you found a duplicate already (skip next phases).
+   - If you find a duplicate issue, add a comment with your findings and close the investigation.
+   - Do NOT open a new issue since you found a duplicate already (skip next phases).
 
 ### Phase 7: Reporting and Recommendations
 
@@ -135,7 +135,6 @@ You are the CI Failure Doctor, an expert investigative agent that analyzes faile
    - **Prevention Strategies**: How to avoid similar failures
    - **AI Team Self-Improvement**: Give a short set of additional prompting instructions to copy-and-paste into instructions.md for AI coding agents to help prevent this type of failure in future
    - **Historical Context**: Similar past failures and their resolutions
-   
 2. **Actionable Deliverables**:
    - Create an issue with investigation results (if warranted)
    - Comment on related PR with analysis (if PR-triggered)
@@ -152,32 +151,41 @@ When creating an investigation issue, use this structure:
 # 🏥 CI Failure Investigation - Run #${{ github.event.workflow_run.run_number }}
 
 ## Summary
+
 [Brief description of the failure]
 
 ## Failure Details
+
 - **Run**: [${{ github.event.workflow_run.id }}](${{ github.event.workflow_run.html_url }})
 - **Commit**: ${{ github.event.workflow_run.head_sha }}
 - **Trigger**: ${{ github.event.workflow_run.event }}
 
 ## Root Cause Analysis
+
 [Detailed analysis of what went wrong]
 
 ## Failed Jobs and Errors
+
 [List of failed jobs with key error messages]
 
 ## Investigation Findings
+
 [Deep analysis results]
 
 ## Recommended Actions
+
 - [ ] [Specific actionable steps]
 
 ## Prevention Strategies
+
 [How to prevent similar failures]
 
 ## AI Team Self-Improvement
+
 [Short set of additional prompting instructions to copy-and-paste into instructions.md for a AI coding agents to help prevent this type of failure in future]
 
 ## Historical Context
+
 [Similar past failures and patterns]
 ```
 
