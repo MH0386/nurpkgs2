@@ -27,6 +27,10 @@ jobs:
           name: mh0386
           signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Configure git identity
+        run: |
+          git config user.name "Mohamed Hisham Abdelzaher"
+          git config user.email "mohamed.hisham.abdelzaher@gmail.com"
       - name: Update
         run: >-
           nix shell nixpkgs#nix-update nixpkgs#jq -c sh -lc
