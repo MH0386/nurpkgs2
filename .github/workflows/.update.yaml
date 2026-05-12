@@ -29,3 +29,5 @@ jobs:
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
       - name: Update
         run: nix eval --json .#packages.x86_64-linux | jq -r 'keys[]' | xargs -r -n1 nix-update --commit
+      - name: Push changes
+        run: git push -f -n
