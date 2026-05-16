@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo_root="$(git rev-parse --show-toplevel)"
+if ! repo_root="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+  echo "error: expected to run inside the nurpkgs repository" >&2
+  exit 1
+fi
 package_dir="$repo_root/pkgs/tinyfish"
 
 if [[ ! -f "$package_dir/default.nix" ]]; then
