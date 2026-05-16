@@ -28,7 +28,7 @@ _:
       formatter = {
         type = "basic";
         line_ending = "lf";
-        max_line_length = 140;
+        max_line_length = 120;
         trim_trailing_whitespace = true;
         eof_newline = true;
         force_array_style = "block";
